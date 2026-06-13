@@ -1,0 +1,13 @@
+{
+  "name": "wikipedia-slot-machine",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A playful slot-machine style random Wikipedia article picker",
+  "scripts": {
+    "dev": "serve . -l 5173",
+    "start": "serve . -l 5173"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
