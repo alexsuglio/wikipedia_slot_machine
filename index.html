@@ -46,8 +46,10 @@
 
         <div class="controls">
           <button id="leverBtn" class="lever-btn" type="button" aria-label="Pull lever to spin">
-            <span class="lever-stick" aria-hidden="true"></span>
-            <span class="lever-knob" aria-hidden="true"></span>
+            <span class="lever-assembly" aria-hidden="true">
+              <span class="lever-stick"></span>
+              <span class="lever-knob"></span>
+            </span>
             <span class="lever-text">Pull Lever</span>
           </button>
         </div>
@@ -56,7 +58,7 @@
       <section class="result" id="result">
         <h2 id="articleTitle">Waiting for your first spin...</h2>
         <p id="articleExtract">No API keys, no logins, just random knowledge.</p>
-        <a id="articleLink" class="article-link" href="https://en.wikipedia.org/wiki/Special:Random" target="_blank" rel="noopener noreferrer">
+        <a id="articleLink" class="article-link is-disabled" href="#" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1">
           Open Wikipedia
         </a>
       </section>

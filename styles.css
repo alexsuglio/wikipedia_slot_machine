@@ -175,6 +175,14 @@ h1 {
   min-height: 44px;
 }
 
+.lever-assembly {
+  display: inline-grid;
+  place-items: center;
+  gap: 0;
+  transform-origin: top center;
+  transition: transform 220ms ease;
+}
+
 .lever-stick {
   position: relative;
   width: 8px;
@@ -186,6 +194,7 @@ h1 {
 }
 
 .lever-knob {
+  margin-top: -2px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -204,7 +213,7 @@ h1 {
   border-radius: 12px;
 }
 
-.lever-btn.pulled .lever-stick {
+.lever-btn.pulled .lever-assembly {
   transform: rotate(24deg);
 }
 
@@ -235,6 +244,15 @@ h1 {
   font-weight: 700;
   border-radius: 999px;
   padding: 0.6rem 1rem;
+  transition: opacity 140ms ease, filter 140ms ease, transform 140ms ease;
+}
+
+.article-link.is-disabled,
+.article-link[aria-disabled="true"] {
+  opacity: 0.45;
+  filter: grayscale(0.35);
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 .status {

@@ -393,6 +393,20 @@ function applySoundUiState() {
   soundToggle.textContent = soundEnabled ? "Sound: On" : "Sound: Off";
 }
 
+function setArticleLinkState({ enabled, href = "#", label = "Open Wikipedia" }) {
+  linkEl.href = href;
+  linkEl.textContent = label;
+  linkEl.setAttribute("aria-disabled", String(!enabled));
+
+  if (enabled) {
+    linkEl.classList.remove("is-disabled");
+    linkEl.removeAttribute("tabindex");
+  } else {
+    linkEl.classList.add("is-disabled");
+    linkEl.setAttribute("tabindex", "-1");
+  }
+}
+
 function startVisualSpin(durationMs = 2200, intervalMs = 95) {
   reels.forEach((reel) => reel.classList.add("spinning"));
 
@@ -411,8 +425,7 @@ function startVisualSpin(durationMs = 2200, intervalMs = 95) {
 function setResult(article) {
   titleEl.textContent = article.title;
   extractEl.textContent = article.extract;
-  linkEl.href = article.url;
-  linkEl.textContent = "Open Article on Wikipedia";
+  setArticleLinkState({ enabled: true, href: article.url, label: "Open Article on Wikipedia" });
 
   reels[0].textContent = "Wikipedia";
   reels[1].textContent = "says";
@@ -424,8 +437,7 @@ function setResult(article) {
 function setError(err) {
   titleEl.textContent = "Spin failed";
   extractEl.textContent = "Could not fetch a random article right now. Try another pull.";
-  linkEl.href = "https://en.wikipedia.org/wiki/Special:Random";
-  linkEl.textContent = "Open Random Article Manually";
+  setArticleLinkState({ enabled: false, href: "#", label: "Open Wikipedia" });
   statusLine.textContent = err.message;
 }
 
@@ -441,6 +453,7 @@ async function pullLever() {
   leverBtn.disabled = true;
   leverBtn.classList.add("pulled");
   themeSelect.disabled = true;
+  setArticleLinkState({ enabled: false, href: "#", label: "Spinning..." });
   statusLine.textContent = `Spinning (${THEME_MAP[themeKey].label})...`;
 
   playLeverSound();
@@ -474,6 +487,7 @@ themeSelect.addEventListener("change", () => {
 });
 
 applySoundUiState();
+setArticleLinkState({ enabled: false, href: "#", label: "Open Wikipedia" });
 
 Object.keys(THEME_MAP).forEach((themeKey) => {
   prefetchThemePool(themeKey);
