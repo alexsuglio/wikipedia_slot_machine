@@ -2,6 +2,8 @@
 
 A playful JavaScript app where you pull a lever, watch a slot-machine style spin animation, and land on a random Wikipedia article.
 
+https://alexsuglio.github.io/wikipedia_slot_machine/
+
 ## New Features
 
 - Slot-machine sound effects built with Web Audio API (no external sound files)
